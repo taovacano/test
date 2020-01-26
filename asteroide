@@ -1,0 +1,124 @@
+input.onButtonPressed(Button.A, function () {
+    led.unplot(X, Y)
+    X = X - 1
+    if (X < 0) {
+        X = 0
+    }
+})
+input.onGesture(Gesture.Shake, function () {
+    if (statut_jeu == statut_jeu_2) {
+        basic.pause(2000)
+        basic.pause(100)
+        X2 = Math.randomRange(0, 4)
+        led.plot(X2, Y2)
+        basic.pause(500)
+        while (statut_jeu == statut_jeu_2) {
+            for (let index = 0; index < 4; index++) {
+                led.unplot(X2, Y2)
+                Y2 = Y2 + 1
+                led.plot(X2, Y2)
+                basic.pause(200)
+            }
+            if (Y2 == 4) {
+                led.unplot(X2, Y2)
+                SCORE = SCORE + 1
+            }
+            X2 = Math.randomRange(0, 4)
+            Y2 = 0
+            led.plot(X2, Y2)
+            basic.pause(200)
+            if (SCORE == _30) {
+                basic.pause(2000)
+                basic.pause(100)
+                X3 = Math.randomRange(0, 4)
+                led.plot(X3, Y3)
+                basic.pause(500)
+                for (let index = 0; index < 4; index++) {
+                    led.unplot(X3, Y3)
+                    Y3 = Y3 + 1
+                    led.plot(X3, Y3)
+                    basic.pause(200)
+                }
+                if (Y3 == 4) {
+                    led.unplot(X3, Y3)
+                    SCORE = SCORE + 1
+                }
+                X3 = Math.randomRange(0, 4)
+                Y3 = 0
+                led.plot(X3, Y3)
+                basic.pause(200)
+                if (SCORE == 60) {
+                    basic.pause(2000)
+                    basic.pause(100)
+                    X4 = Math.randomRange(0, 4)
+                    led.plot(X4, Y4)
+                    basic.pause(500)
+                    for (let index = 0; index < 4; index++) {
+                        led.unplot(X4, Y4)
+                        Y4 = Y4 + 1
+                        led.plot(X4, Y4)
+                        basic.pause(200)
+                    }
+                    if (Y4 == 4) {
+                        led.unplot(X4, Y4)
+                        SCORE = SCORE + 1
+                    }
+                    X4 = Math.randomRange(0, 4)
+                    Y4 = 0
+                    led.plot(X4, Y4)
+                    basic.pause(200)
+                }
+            }
+        }
+    }
+})
+input.onButtonPressed(Button.B, function () {
+    led.unplot(X, Y)
+    X = X + 1
+    if (4 < X) {
+        X = 4
+    }
+})
+let X4 = 0
+let X3 = 0
+let X2 = 0
+let statut_jeu_2 = 0
+let statut_jeu = 0
+let SCORE = 0
+let Y4 = 0
+let Y3 = 0
+let Y2 = 0
+let Y = 0
+let X = 0
+let _30 = 0
+basic.showString("DEBUT DU JEU DANS")
+basic.showString("3")
+basic.showString("2")
+basic.showString("1")
+basic.showString("GO")
+X = 2
+Y = 4
+Y2 = 0
+Y3 = 0
+Y4 = 0
+SCORE = 0
+_30 = 10
+statut_jeu = 1
+statut_jeu_2 = 1
+basic.forever(function () {
+    if (X2 == X && Y2 == Y) {
+        statut_jeu += 4
+        basic.pause(500)
+        basic.showString("PERDU")
+        SCORE = SCORE - 1
+        basic.showString("" + SCORE)
+        SCORE = 0
+        basic.pause(2000)
+        basic.pause(2000)
+        basic.pause(2000)
+        basic.pause(2000)
+    }
+    if (statut_jeu == statut_jeu_2) {
+        led.plot(X, Y)
+    }
+})
